@@ -24,6 +24,7 @@ namespace RestaurantAPI.Data
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Facture> Factures { get; set; }
         public DbSet<Planning> Plannings { get; set; }
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,6 +61,11 @@ namespace RestaurantAPI.Data
             // Index unique pour numéro de table
             modelBuilder.Entity<Table>()
                 .HasIndex(t => t.Numero)
+                .IsUnique();
+
+            // Index unique pour email utilisateur
+            modelBuilder.Entity<Utilisateur>()
+                .HasIndex(u => u.Email)
                 .IsUnique();
         }
     }
